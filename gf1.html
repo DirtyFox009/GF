@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Love ❤️</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      opacity: 0;
+    }
+
+    .subtitle {
+      font-size: 24px;
+      margin-top: 15px;
+      opacity: 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #fff;
+      opacity: 0.8;
+      user-select: none;
+    }
+
+    /* Floating glow effect */
+    .glow {
+      color: #fff;
+      text-shadow: 0 0 10px #ff4d6d,
+                   0 0 20px #ff4d6d,
+                   0 0 40px #ff1a4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title glow">I Love You kolijaaaaaaa ❤️</div>
+    <div class="subtitle">Onk Beshi 💕</div>
+    <div class="subtitle">Your Baby Zumar XD 💕</div>
+  </div>
+
+  <script>
+    // Animate main title
+    anime({
+      targets: '.title',
+      opacity: [0, 1],
+      scale: [0.5, 1],
+      duration: 2000,
+      easing: 'easeOutElastic(1, .8)',
+      delay: 500
+    });
+
+    // Animate subtitle
+    anime({
+      targets: '.subtitle',
+      opacity: [0, 1],
+      translateY: [20, 0],
+      duration: 1500,
+      easing: 'easeOutExpo',
+      delay: 2500
+    });
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      document.body.appendChild(heart);
+
+      // Random position & size
+      const size = Math.random() * 24 + 16;
+      heart.style.fontSize = size + 'px';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.bottom = '-30px';
+
+      // Animate floating
+      anime({
+        targets: heart,
+        translateY: -window.innerHeight - 100,
+        opacity: [1, 0],
+        duration: 4000 + Math.random() * 2000,
+        easing: 'easeOutCubic',
+        complete: () => heart.remove()
+      });
+    }
+
+    // Create hearts every 400ms
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
